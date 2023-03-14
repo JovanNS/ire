@@ -80,9 +80,10 @@ localhost/api/v1/real-estate-entities/1
 ## BONUS
 GET 
 ```
-localhost/api/v1/real-estate-entities?filter[price_between]=8000000,8200000
-```
+localhost/api/v1/real-estate-entities?filter[radius_seach_haversine]=-51.997932,-31.960129,5
+localhost/api/v1/real-estate-entities?filter[radius_seach_haversine]=latitude,longitude,radius
 
+```
 # TODO
 ```
 Question the db structure
