@@ -4,12 +4,18 @@ For the sake of simplicity i have added the .env file and vendor in the repo (I 
 So all you need to run is
 ```
  ./vendor/bin/sail up -d
+ ./vendor/bin/sail artisan config:cache
  ./vendor/bin/sail artisan migrate
  ./vendor/bin/sail artisan db:seed
 
  if you want to run a test
 ./vendor/bin/sail artisan test  --filter RealEstateEntityTest
 
+```
+
+When you are done
+```
+ ./vendor/bin/sail down -v
 ```
 
 # COMMENTS
@@ -49,7 +55,7 @@ localhost/api/v1/real-estate-entities
 ## BONUS
 GET 
 ```
-localhost/api/v1/real-estate-entities?filter[price_between]=8000000,8200000&filter[address]=a&filter[size]=2676&filter[number_of_rooms]=5
+localhost/api/v1/real-estate-entities?filter[price_between]=8000000,8200000
 ```
 
 # TODO

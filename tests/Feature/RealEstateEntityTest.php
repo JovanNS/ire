@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\RealEstateEntity;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class RealEstateEntityTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function test_get_entities_available(): void
     {

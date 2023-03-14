@@ -21,6 +21,8 @@ return new class extends Migration
             $table->double('longitude', 10, 6);
             $table->unsignedInteger('price');
             $table->timestamps();
+
+            $table->foreign('type_id')->references('id')->on('real_estate_entity_types');
         });
     }
 
