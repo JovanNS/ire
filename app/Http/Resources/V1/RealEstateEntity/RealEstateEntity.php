@@ -17,7 +17,11 @@ class RealEstateEntity extends JsonResource
         return [
             'address' => $this->address,
             'type' => $this->type->name,
-            'price' => $this->price
+            'price' => number_format($this->price / 100, 2),
+            'number_of_rooms' => $this->number_of_rooms,
+            'size' => $this->size . 'm2',
+            'longitude' => $this->longitude,
+            'latitude' => $this->latitude,
         ];
     }
 }

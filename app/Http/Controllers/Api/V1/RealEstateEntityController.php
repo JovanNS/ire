@@ -3,24 +3,38 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\RealEstateEntity;
 use App\Http\Resources\V1\RealEstateEntity\RealEstateEntity as RealEstateEntityResource;
+use Spatie\QueryBuilder\QueryBuilder;
+use App\Http\Requests\V1\UpdateRealEstateEntity;
+use App\Http\Requests\V1\CreateRealEstateEntity;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class RealEstateEntityController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return response()->json(RealEstateEntityResource::collection(RealEstateEntity::all()));
+        $entities = QueryBuilder::for(RealEstateEntity::with('type'))
+                    ->allowedFilters([
+                        'address', 
+                        AllowedFilter::exact('size'),
+                        AllowedFilter::exact('number_of_rooms'),
+                        AllowedFilter::scope('price_between'),
+                        AllowedFilter::scope('radius_seach_haversine')
+                    ])
+                    ->get();
+
+        return response()->json(RealEstateEntityResource::collection($entities));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateRealEstateEntity $request)
     {
         $realEstateEntity = RealEstateEntity::create($request->validated());
 
@@ -39,7 +53,7 @@ class RealEstateEntityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RealEstateEntity $realEstateEntity)
+    public function update(UpdateRealEstateEntity $request, RealEstateEntity $realEstateEntity)
     {
         $realEstateEntity->update($request->validated());
 
@@ -52,5 +66,7 @@ class RealEstateEntityController extends Controller
     public function destroy(RealEstateEntity $realEstateEntity)
     {
         $realEstateEntity->delete();
+
+        return response()->json([], 201);
     }
 }
