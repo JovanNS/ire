@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\V1;
+namespace App\Http\Requests\V1\RealEstateEntity;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,7 +22,7 @@ class CreateRealEstateEntity extends FormRequest
     public function rules(): array
     {
         return [
-            'type_id' => 'required|exists:real_estate_types,id',
+            'type_id' => 'required|exists:real_estate_entity_types,id',
             'address' => 'required|min:4',
             'price' => 'required|numeric',
             'longitude' => 'required',

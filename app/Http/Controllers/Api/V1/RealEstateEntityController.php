@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\RealEstateEntity;
 use App\Http\Resources\V1\RealEstateEntity\RealEstateEntity as RealEstateEntityResource;
 use Spatie\QueryBuilder\QueryBuilder;
-use App\Http\Requests\V1\UpdateRealEstateEntity;
-use App\Http\Requests\V1\CreateRealEstateEntity;
+use App\Http\Requests\V1\RealEstateEntity\UpdateRealEstateEntity;
+use App\Http\Requests\V1\RealEstateEntity\CreateRealEstateEntity;
 use Spatie\QueryBuilder\AllowedFilter;
 
 class RealEstateEntityController extends Controller
@@ -26,9 +26,9 @@ class RealEstateEntityController extends Controller
                         AllowedFilter::scope('price_between'),
                         AllowedFilter::scope('radius_seach_haversine')
                     ])
-                    ->get();
+                    ->paginate();
 
-        return response()->json(RealEstateEntityResource::collection($entities));
+        return response()->json(RealEstateEntityResource::collection($entities)->response()->getData(true));
     }
 
     /**
@@ -38,7 +38,7 @@ class RealEstateEntityController extends Controller
     {
         $realEstateEntity = RealEstateEntity::create($request->validated());
 
-        return response()->json(new RealEstateEntityResource($realEstateEntity));
+        return response()->json(new RealEstateEntityResource($realEstateEntity), 201);
     }
 
     /**
@@ -67,6 +67,6 @@ class RealEstateEntityController extends Controller
     {
         $realEstateEntity->delete();
 
-        return response()->json([], 201);
+        return response()->json([], 204);
     }
 }

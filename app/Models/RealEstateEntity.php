@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class RealEstateEntity extends Model
 {
     use HasFactory;
+    
+    protected $guarded = [];
 
     public function scopePriceBetween($query, $start, $end)
     {
