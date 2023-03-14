@@ -52,6 +52,29 @@ localhost/api/v1/real-estate-entities
 }
 ```
 
+PATCH 
+
+```
+localhost/api/v1/real-estate-entities/1
+
+{
+    "address":"Updated",
+}
+```
+
+
+SHOW 
+
+```
+localhost/api/v1/real-estate-entities/1
+```
+
+DELETE 
+
+```
+localhost/api/v1/real-estate-entities/1
+```
+
 ## BONUS
 GET 
 ```
