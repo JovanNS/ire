@@ -15,7 +15,9 @@ class RealEstateEntity extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            
+            'address' => $this->address,
+            'type' => $this->type->name,
+            'price' => $this->price
         ];
     }
 }
