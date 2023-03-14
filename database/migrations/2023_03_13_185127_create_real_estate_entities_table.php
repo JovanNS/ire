@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('address');
             $table->unsignedFloat('size');
             $table->unsignedFloat('number_of_rooms');
-            $table->unsignedFloat('latitude');
-            $table->unsignedFloat('longitude');
+            $table->double('latitude', 10, 6);
+            $table->double('longitude', 10, 6);
             $table->unsignedInteger('price');
             $table->timestamps();
         });
