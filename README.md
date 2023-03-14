@@ -4,12 +4,14 @@ For the sake of simplicity i have added the .env file and vendor in the repo (I 
 So all you need to run is
 ```
  ./vendor/bin/sail up -d
- ./vendor/bin/sail artisan config:clear
+ ./vendor/bin/sail artisan config:cache
  ./vendor/bin/sail artisan migrate
  ./vendor/bin/sail artisan db:seed
 
  if you want to run a test
+./vendor/bin/sail artisan config:clear
 ./vendor/bin/sail artisan test  --filter RealEstateEntityTest
+./vendor/bin/sail artisan config:cache
 
 ```
 
